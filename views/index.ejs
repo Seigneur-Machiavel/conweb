@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="icon" href="<%= launch_folder %>/icon48.png" type="image/x-icon">
+    <link rel="stylesheet" href="<%= launch_folder %>/styles.css?v=<%= timestamp %>">
+    <script src="<%= launch_folder %>/scripts/anime.min.js?v=<%= timestamp %>"></script>
+    <script src="<%= launch_folder %>/scripts/script_1.js?v=<%= timestamp %>"></script>
+</head>
+
+<body class="dark-mode">
+    <label class="switch">
+        <input type="checkbox" id="dark-mode-toggle" checked>
+        <span class="slider"></span>
+    </label>
+
+    <div id="pointerDiv"></div>
+
+    <div id="mainBackgroundWrap">
+        <img id="homeButton" src="<%= launch_folder %>/home128.png" alt="return">
+        <div id="mainBackLeft" class="backgroundPart">
+            <div id="mainBackLeftObject" class="mainBackObject"><div></div></div>
+            <h2 id="mainBackLeftTitle" class="mainBackTitle">VISION</h2>
+        </div>
+        <div id="mainBackRight" class="backgroundPart"> 
+            <div id="mainBackRightObject" class="mainBackObject"><div></div></div>
+            <h2 id="mainBackRightTitle" class="mainBackTitle">BLOCKCHAIN</h2>
+        </div>
+        <div id="centerCircle"></div>
+    </div>
+
+    <div id="menuA" class="menu disabled">
+        <h1 class="title">CONTRAST</h1>
+        <div class="menuItemsWrap"></div>
+    </div>
+
+    <div id="contentA" class="content">
+        <div class="secret">toto A</div>
+        <div class="wrap">
+            <h2 class="subtitle">The Essence of Decentralized Innovation</h2>
+            <p class="description">pioneering the frontier of Layer 1 (L1) blockchain technology with a singular vision: to achieve unparalleled decentralization.<br>Our journey is inspired by the foundational principles of the blockchain industry, where user orientation and minimalism are not just features but the core of our existence.</p>
+        </div>
+    </div>
+
+    <div id="menuB" class="menu disabled">
+        <h1 class="title">CONTRAST</h1>
+        <div class="menuItemsWrap"></div>
+    </div>
+
+    <div id="contentB" class="content">
+        <div class="secret">toto B</div>
+        <div class="wrap">
+            <h2 class="subtitle">Fundamental L1 supporting scalable DeFi applications</h2>
+            <p class="description">Our blockchain is designed to be the foundation for a new generation of decentralized applications,<br>providing the security and scalability necessary to support a global user base.</p>
+        </div>
+    </div>
+</body>
+
+</html>

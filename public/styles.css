@@ -1,0 +1,468 @@
+:root {
+    --color1: white;
+    --color2: black;
+    --modal-background-color: rgba(226, 217, 192, 0.7);
+    --text-color: #000000;
+}
+@font-face {
+    font-family: 'Contrast';
+    src: url('./fonts/vertopal.com_Contrast\ V0.89.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-Bold.woff') format('woff');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-ExtraLight.woff') format('woff');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-Italic.woff') format('woff');
+    font-style: italic;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-Light.woff') format('woff');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-Medium.woff') format('woff');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-SemiBold.woff') format('woff');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'IBM';
+    src: url('./fonts/IBM_Plex_Mono_Woff/IBMPlexMono-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+.dark-mode {
+    --color1: black;
+    --color2: white;
+    --modal-background-color: rgba(0, 0, 0, 0.7);
+    --text-color: #ffffff;
+}
+body {
+    background-color: var(--color1);
+    color: var(--text-color);
+    overflow: hidden;
+    margin: 0;
+    font-family: 'IBM', sans-serif;
+    cursor: none;
+}
+
+#pointerDiv {
+    top: -100vh;
+    pointer-events: none;
+    position: fixed;
+    z-index: 1;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    background-color: white;
+    animation: none;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform .12s ease-in-out, width .12s ease-in-out, height .12s ease-in-out, border-radius .24s ease-in-out;
+}
+#pointerDiv.hovering {
+    transform: translate(-50%, -50%) scale(.9);
+}
+#pointerDiv.clicked {
+    animation: pointerClicked .3s alternate;
+}
+@keyframes pointerClicked {
+    0% {
+        box-shadow: 0 0 0 0px black, 0 0 2px 2px white, inset 0 0 0 0px black;
+    }
+    40% {
+        box-shadow: 0 0 0px 8px black, 0 0 6px 8px white, inset 0 0 1px 1px black;
+    }
+    100% {
+        box-shadow: 0 0 0px 12px black, 0 0 0px 10px white, inset 0 0 2px 2px black;
+    }
+}
+#pointerDiv.color1 {
+    background-color: var(--color1);
+}
+#pointerDiv.color2 {
+    background-color: var(--color2);
+}
+#pointerDiv.rectangle {
+    pointer-events: all; /* disable clicking */
+    border-radius: 2%;
+    height: 10vh;
+    width: 20vw;
+    box-shadow: inset 0 0 3px black;
+}
+
+.menu {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    height: 70vh;
+    aspect-ratio: 1 / 1;
+    margin-top: 15vh;
+    transition: scale 0.3s ease-in-out, opacity 0.2s ease-in-out, filter 0.3s ease-in-out;
+}
+#menuA {
+    color: var(--color2);
+    right: 50%;
+}
+#menuB {
+    color: var(--color1);
+    left: 50%;
+}
+.menu .title {
+    text-align: center;
+    font-family: 'Contrast';
+    margin: 10% 0 10%;
+    font-size: 8vh;
+    transition: filter .3s ease-in-out, scale .3s ease-in-out, opacity 0.2s ease-in-out;
+    transition-delay: .2s;
+}
+#menuA .title {
+    transform-origin: 0% 50%;
+}
+#menuB .title {
+    transform-origin: 100% 50%;
+}
+.menu:not(.disabled) .title, .menu:not(.disabled) .menuItem {
+    opacity: 1;
+    filter: blur(0);
+    scale: 1;
+}
+.menu .title, .menuItem {
+    filter: blur(10px);
+    scale: .1;
+    opacity: 0;
+}
+.menuItemsWrap {
+
+}
+.menuItem {
+    /*cursor: pointer;*/
+    padding: 1vh 0;
+    font-size: 3.2vh;
+    pointer-events: all;
+    transition: filter .3s ease-in-out, scale .3s ease-in-out, opacity 0.2s ease-in-out;
+}
+.menuItem span {
+    display: inline-block;
+    pointer-events: none;
+    opacity: 0;
+    scale: 2;
+    filter: contrast(0) blur(10px);
+    transition: filter .2s ease-in-out, scale .24s .06s ease-in-out, opacity .1s ease-in-out;
+}
+.menuItem span.endSpace {
+    margin-right: 10px;
+}
+#menuA .menuItem span {
+    transform-origin: 0% 50%;
+}
+.menuItem span.visible {
+    opacity: 1;
+    filter: contrast(1) blur(0);
+    scale: 1;
+}
+
+.content {
+    pointer-events: none;
+    /*display: none;*/
+    opacity: 0;
+    filter: blur(4px);
+    z-index: 3;
+    position: fixed;
+    width: 50vw;
+    height: 100vh;
+    transition: opacity 0.2s ease-in-out, filter 0.3s ease-in-out;
+}
+.content .wrap {
+    position: absolute;
+    top: 36%;
+}
+.content.visible {
+    display: block;
+    opacity: 1;
+    filter: blur(0);
+}
+.secret {
+    position: absolute;
+    margin: 8vh 2vw 0;
+    color: var(--color1);
+}
+.subtitle {
+    font-size: 3vh;
+    margin: 0 4vw 4vh;
+}
+.description {
+    margin: 0 4vw;
+}
+#contentA {
+    color: var(--color2);
+    right: 0;
+}
+#contentA .secret {
+    color: var(--color1);
+}
+#contentB {
+    color: var(--color1);
+    left: 0;
+}
+#contentB .subtitle {
+    text-align: right;
+}
+#contentB .secret {
+    color: var(--color2);
+    right: 0;
+}
+.pageContentDownloadBtn {
+    pointer-events: all;
+    background-color: var(--color2);
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-left: 10vh;
+    padding: 6px 22px 6px 10px;
+    border-radius: 16px;
+    text-decoration: none;
+    border: solid var(--color1) 2.4px;
+    transform: scale(1);
+    transition: transform 0.12s ease-in-out;
+}
+.pageContentDownloadBtn:hover {
+    transform: scale(1.02);
+}
+.pageContentDownloadBtn div {
+    display: contents;
+    margin: 0 10px;
+}
+.pageContentDownloadBtn img {
+    margin: 0 10px 0 0;
+    width: 48px;
+    height: 48px;
+    transform: scale(.8);
+}
+.pageContentDownloadBtn h2 {
+    font-size: 3vh;
+    margin: 0;
+    color: var(--color1);
+}
+#page1.visible .pageContentDownloadBtn h2 {
+    animation: textGrow .6s 1s cubic-bezier(0.52, 0.01, 0.32, 1.4) forwards;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 35vh;
+    width: 40vw;
+    margin-left: 30vw;
+    margin-top: 30vh;
+    border-radius: 6vw;
+    background-color: var(--modal-background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+#mainBackgroundWrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+
+}
+#homeButton {
+    pointer-events: none;
+    position: fixed;
+    z-index: 3;
+    width: 44px;
+    padding: 2vh;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    filter: invert(1);
+}
+body.dark-mode #homeButton {
+    filter: invert(0);
+}
+#homeButton.visible {
+    pointer-events: all;
+    opacity: 1;
+}
+#homeButton.visible:hover {
+    transform: scale(1.1);
+}
+#centerCircle {
+    position: fixed;
+    height: 20%;
+    aspect-ratio: 1 / 1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    clip-path: circle(50% at 50% 50%);
+    background: linear-gradient(90deg, var(--color2) 50%, var(--color1) 50%);
+}
+.backgroundPart {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.mainBackObject {
+    position: absolute;
+    height: 20%;
+    aspect-ratio: 1 / 1;
+    top: 50%;
+    translate: 0% -50%;
+    background: var(--color1);
+    border-radius: 50%;
+    opacity: 0;
+    transition: transform 0.2s ease-in-out;
+}
+.mainBackObject div {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background: var(--color2);
+    transform: scale(0);
+    opacity: 0;
+}
+.mainBackObject.active {
+    /*cursor: pointer;*/
+}
+.mainBackObject.active:hover {
+    transform: scale(1.1);
+}
+.mainBackTitle {
+    font-family: 'Contrast';
+    position: absolute;
+    top: 64%;
+    font-weight: 100;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+.mainBackTitle.visible {
+    opacity: 1;
+}
+
+
+#mainBackLeft {
+    background: var(--color2);
+}
+#mainBackLeftObject {
+    left: initial !important;
+    right: 0%;
+    translate: 50% -50%;
+}
+#mainBackLeftObject div {
+    border-radius: 50% 50% 50% 50%;
+}
+#mainBackLeftTitle {
+    right: 50%;
+    translate: 50% -50%;
+    color: var(--color1);
+}
+
+#mainBackRight {
+    background: var(--color1);
+}
+#mainBackRightObject {
+    right: initial !important;
+    left: 0%;
+    translate: -50% -50%;
+    filter: invert(1);
+}
+#mainBackRightTitle {
+    left: 50%;
+    translate: -50% -50%;
+    color: var(--color2);
+}
+
+/* DARK MODE SWITCH */
+.switch {
+    z-index: 4;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    /*cursor: pointer;*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked+.slider {
+    background-color: #777777;
+}
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
