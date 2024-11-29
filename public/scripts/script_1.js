@@ -149,6 +149,20 @@ function setPointerDivRectangleAttribute(value = true) {
 		eHTML.pointerDiv.classList.remove('rectangle');
 	}
 }
+function pointerClicked() {
+	animations.pointerClicked = anime({
+		targets: eHTML.pointerDiv,
+		boxShadow: [
+			'0 0 0 0px black, 0 0 2px 2px white, inset 0 0 0 0px black',
+			'0 0 0px 8px black, 0 0 6px 8px white, inset 0 0 1px 1px black',
+			'0 0 0px 12px black, 0 0 0px 10px white, inset 0 0 2px 2px black',
+			'0 0 0 0px black, 0 0 0px 2px white, inset 0 0 0 0px black',
+			'0 0 0 0px black, 0 0 0px 0px white, inset 0 0 0 0px black',
+		],
+		easing: 'easeOutExpo',
+		duration: 300,
+	});
+}
 //#endregion
 
 //#region - ANIMATIONS
@@ -448,9 +462,10 @@ document.getElementById("dark-mode-toggle").addEventListener('change', (event) =
 });
 let clickTimeout;
 document.addEventListener('click', async (event) => {
-	if (clickTimeout) { clearTimeout(clickTimeout); }
+	/*if (clickTimeout) { clearTimeout(clickTimeout); }
 	eHTML.pointerDiv.classList.add('clicked');
-	clickTimeout = setTimeout(() => { eHTML.pointerDiv.classList.remove('clicked'); }, 200);
+	clickTimeout = setTimeout(() => { eHTML.pointerDiv.classList.remove('clicked'); }, 200);*/
+	pointerClicked();
 
 	switch (event.target) {
 		case eHTML.mainBack.leftObject:

@@ -100,13 +100,15 @@ body {
     background-color: white;
     animation: none;
     transform: translate(-50%, -50%) scale(1);
-    transition: transform .12s ease-in-out, width .12s ease-in-out, height .12s ease-in-out, border-radius .24s ease-in-out;
+    transition:
+    transform .12s ease-in-out, width .12s ease-in-out,
+    height .12s ease-in-out, border-radius .24s ease-in-out;
 }
 #pointerDiv.hovering {
     transform: translate(-50%, -50%) scale(.9);
 }
 #pointerDiv.clicked {
-    animation: pointerClicked .3s alternate;
+    /*animation: pointerClicked .3s alternate;*/
 }
 @keyframes pointerClicked {
     0% {
