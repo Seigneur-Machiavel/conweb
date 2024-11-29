@@ -474,3 +474,31 @@ input:checked+.slider {
 input:checked+.slider:before {
     transform: translateX(26px);
 }
+
+footer {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    height: 64px;
+    width: 100vw;
+    opacity: 0;
+    animation: footerAppear 0.2s 4s ease-in-out forwards;
+}
+@keyframes footerAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+footer img {
+    margin-right: calc(64px - 48px);
+    width: 48px;
+    height: 48px;
+    filter: invert(0);
+}
+body.dark-mode footer img {
+    filter: invert(1);
+}
