@@ -375,6 +375,7 @@ async function revealMenuItemText(element, text = "toto") {
 		element.appendChild(span);
 		await new Promise(resolve => setTimeout(resolve, 1000 / 60));
 		span.classList.add('visible');
+		span.classList.add('no-select');
 
 		const nextIsSpace = letters[i + 1] === ' ';
 		if (!nextIsSpace) { continue; }
@@ -403,6 +404,7 @@ async function revealMenu(target = "A") {
 		const span = document.createElement('span');
 		span.innerText = '•';
 		span.classList.add('endSpace');
+		span.classList.add('no-select');
 		menuItem.appendChild(span);
 		// show menu item text on hover
 		menuItem.addEventListener('mouseover', async (event) => {
