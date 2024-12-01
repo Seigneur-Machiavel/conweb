@@ -328,8 +328,8 @@ body {
     pointer-events: none;
     position: fixed;
     z-index: 3;
-    width: 44px;
-    padding: 2vh;
+    width: 32px;
+    padding: 3vh;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     filter: invert(1);
@@ -453,7 +453,7 @@ body.dark-mode #homeButton {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--color2);
     transition: .4s;
     border-radius: 34px;
 }
@@ -464,12 +464,12 @@ body.dark-mode #homeButton {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--color1);
     transition: .4s;
     border-radius: 50%;
 }
 input:checked+.slider {
-    background-color: #777777;
+    background-color: var(--color2);
 }
 input:checked+.slider:before {
     transform: translateX(26px);
@@ -494,9 +494,9 @@ footer {
     }
 }
 footer img {
-    margin-right: calc(64px - 48px);
-    width: 48px;
-    height: 48px;
+    margin-right: 32px;
+    width: 40px;
+    height: 40px;
     filter: invert(0);
 }
 body.dark-mode footer img {
