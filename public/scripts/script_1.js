@@ -34,7 +34,8 @@ function toggleDarkMode(element) {
 const animations = {};
 const GLOBAL = {
 	isOpen: false,
-	revealedMenuItem: {}
+	revealedMenuItem: {},
+	cyberconActive: false,
 }
 const menuContentValues = {
 	A: { // VISON
@@ -86,12 +87,10 @@ const menuContentValues = {
 
 window.addEventListener('load', async function () {
 
-//#region - CLASSES
-//#endregion
-
 //#region - HTML-ELEMENTS
 const eHTML = {
 	pointerDiv: document.getElementById('pointerDiv'),
+	msgGamestop: document.getElementById('msgGamestop'),
 	homeButton: document.getElementById('homeButton'),
 	modal: document.getElementById('modal'),
 	//toggleDarkModeButton: document.getElementById('dark-mode-toggle'),
@@ -122,7 +121,8 @@ const eHTML = {
 
 		right: document.getElementById('mainBackRight'),
 		rightObject: document.getElementById('mainBackRightObject'),
-		rightObjectIn: document.getElementById('mainBackRightObject').children[0],
+		cyberconFrame: document.getElementById('mainBackRightObject').children[0],
+		rightObjectIn: document.getElementById('mainBackRightObject').children[1],
 		rightTitle: document.getElementById('mainBackRightTitle'),
 	}
 }
@@ -160,6 +160,36 @@ class CursorManager {
 function rnd(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
+function cyberConAppear(duration = 1000) {
+	GLOBAL.cyberconActive = true;
+	eHTML.mainBack.cyberconFrame.style.opacity = 0;
+	eHTML.mainBack.cyberconFrame.src = 'http://pinkparrot.science:27280';
+	eHTML.mainBack.cyberconFrame.style.display = 'block';
+	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'auto';
+	animations.cyberConAppear = anime({
+		targets: eHTML.mainBack.cyberconFrame,
+		opacity: [0, 1],
+		easing: 'easeOutExpo',
+		duration,
+		complete: () => { eHTML.msgGamestop.classList.add('visible'); }
+	});
+}
+function cyberConDisappear(duration = 1000) {
+	GLOBAL.cyberconActive = false;
+	eHTML.msgGamestop.classList.remove('visible');
+	eHTML.mainBack.cyberconFrame.src = 'about:blank';
+	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'none';
+	animations.cyberConDisappear = anime({
+		targets: eHTML.mainBack.cyberconFrame,
+		opacity: [1, 0],
+		easing: 'easeOutExpo',
+		duration,
+		complete: () => {
+			eHTML.mainBack.cyberconFrame.style.display = 'none';
+			eHTML.mainBack.cyberconFrame.src = 'about:blank';
+		}
+	});
+}
 //#endregion
 
 //#region - ANIMATIONS
@@ -188,8 +218,8 @@ async function welcome() {
 		},
 	});
 
-	animations.welcomeRightObject = anime({
-		targets: eHTML.mainBack.rightObject,
+	animations.welcomeLeftObject = anime({
+		targets: eHTML.mainBack.leftObject,
 		borderRadius: ['50%', '0%'],
 		easing: 'easeOutExpo',
 		duration: 1000,
@@ -227,10 +257,13 @@ async function welcome() {
 	await new Promise(resolve => setTimeout(resolve, 600));
 	eHTML.mainBack.leftTitle.classList.add('visible');
 	eHTML.mainBack.rightTitle.classList.add('visible');
+
+	eHTML.mainBack.right.style.overflow = 'initial';
 }
 welcome();
 async function openBackObject(target = 'left') {
 	GLOBAL.isOpen = target;
+	cyberConDisappear(0);
 
 	animations.backObjectClosing = anime({
 		targets: [ eHTML.mainBack.leftObjectIn, eHTML.mainBack.rightObjectIn ],
@@ -249,7 +282,7 @@ async function openBackObject(target = 'left') {
 				targets: target === 'left'
 				? [eHTML.mainBack.rightObject, eHTML.mainBack.rightTitle]
 				: [eHTML.mainBack.leftObject, eHTML.mainBack.leftTitle],
-				clipPath: target === 'left'
+				clipPath: target === 'right'
 				? ['polygon(0 0, 100% 0, 100% 100%, 0 100%)', 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)']
 				: ['polygon(0 0, 100% 0, 100% 100%, 0 100%)', 'polygon(0 0, 0% 0, 0% 100%, 0 100%)'],
 				easing: 'easeOutExpo',
@@ -277,27 +310,36 @@ async function openBackObject(target = 'left') {
 
 	animations.openBackObject = anime({
 		targets: target === 'left' ? eHTML.mainBack.leftObject : eHTML.mainBack.rightObject,
-		height: '80%',
-		translate: target === 'left' ? '2% -50%' : '-2% -50%',
+		height: target === 'left' ? '80%' : '100%',
+		aspectRatio: target === 'left' ? '1 / 1' : '8 / 6',
+		translate: target === 'left' ? '2% -50%' : '-50% -50%',
 		left: target === 'left' ? 'initial' : '0%',
 		right: target === 'left' ? '0%' : 'initial',
 		easing: 'easeOutExpo',
-		duration: 1000
+		duration: 800,
+		complete: () => {
+			if (target === 'left') return;
+			cyberConAppear();
+			eHTML.mainBack.left.classList.add('invert');
+			eHTML.homeButton.classList.add('invert');
+		}
 	});
 	animations.unRoundBackObject = anime({
 		targets: target === 'left' ? eHTML.mainBack.leftObject : eHTML.mainBack.rightObject,
 		borderRadius: target === 'right'
-		? ['0% 0% 0% 0%', '0% 10% 10% 0%']
+		//? ['0% 0% 0% 0%', '0% 10% 10% 0%']
+		? ['0% 0% 0% 0%', '0% 0% 0% 0%']
 		: ['50% 50% 50% 50%', '10% 0% 0% 10%'],
 		easing: 'easeOutExpo',
 		duration: 400,
-		delay: target === 'right' ? 200 : 0
+		delay: target === 'right' ? 200 : 0,
 	});
 
 	await new Promise(resolve => setTimeout(resolve, 200));
 }
 async function closeBackObject(target = 'left') {
 	eHTML.homeButton.classList.remove('visible');
+	cyberConDisappear();
 	hideMenu();
 	hideContent();
 
@@ -306,10 +348,13 @@ async function closeBackObject(target = 'left') {
 	GLOBAL.revealedMenuItem = {};
 	eHTML.menuItemsWrapA.innerHTML = "";
 	eHTML.menuItemsWrapB.innerHTML = "";
+	eHTML.mainBack.left.classList.remove('invert');
+	eHTML.homeButton.classList.remove('invert');
 
 	animations.closeBackObject = anime({
 		targets: target === 'left' ? eHTML.mainBack.leftObject : eHTML.mainBack.rightObject,
 		height: '20%',
+		aspectRatio: '1 / 1',
 		translate: target === 'left' ? '50% -50%' : '-50% -50%',
 		left: '50%',
 		right: '50%',
@@ -318,12 +363,13 @@ async function closeBackObject(target = 'left') {
 	});
 	animations.roundBackObject = anime({
 		targets: target === 'left' ? eHTML.mainBack.leftObject : eHTML.mainBack.rightObject,
-		borderRadius: target === 'right'
+		borderRadius: target === 'left'
 		? ['0% 10% 10% 0%', '0% 0% 0% 0%']
 		: ['10% 0% 0% 10%', '50% 50% 50% 50%'],
 		easing: 'easeOutExpo',
 		duration: 400,
-		delay: 200
+		delay: 200,
+		//complete: () => { eHTML.mainBack.left.classList.remove('invert'); }
 	});
 
 	await new Promise(resolve => setTimeout(resolve, 600));
@@ -447,6 +493,10 @@ async function hideContent() {
 
 //#region - EVENT LISTENERS
 document.addEventListener('mousemove', (event) => {
+	console.log(event.target.id);
+	if (event.target.id === eHTML.mainBack.cyberconFrame.id) eHTML.pointerDiv.classList.add('hoverCybercon');
+	else eHTML.pointerDiv.classList.remove('hoverCybercon');
+
 	eHTML.pointerDiv.style.left = `${event.clientX}px`;
 	eHTML.pointerDiv.style.top = `${event.clientY}px`;
 });
@@ -470,6 +520,7 @@ document.addEventListener('click', async (event) => {
 		case eHTML.homeButton:
 			const target = GLOBAL.isOpen;
 			if (!target) { return; }
+
 			await closeBackObject(target);
 			break;
 	}

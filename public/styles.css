@@ -110,6 +110,9 @@ body {
     transform .12s ease-in-out, width .12s ease-in-out,
     height .12s ease-in-out, border-radius .24s ease-in-out;
 }
+#pointerDiv.hoverCybercon {
+    display: none !important;
+}
 #pointerDiv.hovering {
     transform: translate(-50%, -50%) scale(.9);
 }
@@ -134,6 +137,7 @@ body {
     background-color: var(--color2);
 }
 #pointerDiv.rectangle {
+    display: block !important;
     pointer-events: all; /* disable clicking */
     border-radius: 2%;
     height: 10vh;
@@ -155,6 +159,7 @@ body {
     right: 50%;
 }
 #menuB {
+    display: none;
     color: var(--color1);
     left: 50%;
 }
@@ -334,8 +339,14 @@ body {
     transition: opacity 0.2s ease-in-out;
     filter: invert(1);
 }
+#homeButton.invert {
+    filter: invert(0);
+}
 body.dark-mode #homeButton {
     filter: invert(0);
+}
+body.dark-mode #homeButton.invert {
+    filter: invert(1);
 }
 #homeButton.visible {
     pointer-events: all;
@@ -359,6 +370,11 @@ body.dark-mode #homeButton {
     width: 50%;
     height: 100%;
     overflow: hidden;
+
+    transition: filter 0.3s ease-in-out;
+}
+.backgroundPart.invert {
+    filter: invert(1);
 }
 
 .mainBackObject {
@@ -370,7 +386,7 @@ body.dark-mode #homeButton {
     background: var(--color1);
     border-radius: 50%;
     opacity: 0;
-    transition: transform 0.2s ease-in-out;
+    transition: transform .12s cubic-bezier(.9, .01, .5, 1);
 }
 .mainBackObject div {
     pointer-events: none;
@@ -407,9 +423,6 @@ body.dark-mode #homeButton {
     right: 0%;
     translate: 50% -50%;
 }
-#mainBackLeftObject div {
-    border-radius: 50% 50% 50% 50%;
-}
 #mainBackLeftTitle {
     right: 50%;
     translate: 50% -50%;
@@ -420,10 +433,42 @@ body.dark-mode #homeButton {
     background: var(--color1);
 }
 #mainBackRightObject {
+    z-index: 100;
     right: initial !important;
     left: 0%;
     translate: -50% -50%;
     filter: invert(1);
+}
+#cyberconFrame {
+    pointer-events: none;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--color1);
+    filter: invert(1);
+    opacity: 0;
+}
+#msgGamestop {
+    pointer-events: none;
+    z-index: 10000;
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, 0%);
+    color: var(--color2);
+    font-size: 26px;
+    font-family: emoji;
+    opacity: 0;
+}
+#msgGamestop.visible {
+    opacity: 1;
+    animation: msgGamestopAppear 0.2s ease-in-out forwards;
+}
+#mainBackRightObject div {
+    border-radius: 50% 50% 50% 50%;
 }
 #mainBackRightTitle {
     left: 50%;

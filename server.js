@@ -17,6 +17,7 @@ const settings = {
   t: "NzQxNzQ2NjEdNjQ0NgQwMzg2XyOg3U5fJ9v5Kj6Y9o8z0j7z3QJYv6K3c", // admin Token
   cp: false, // Custom path
 }
+
 const args = process.argv.slice(2);
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];
