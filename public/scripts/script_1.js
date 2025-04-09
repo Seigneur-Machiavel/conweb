@@ -94,7 +94,7 @@ const eHTML = {
 	pointerDiv: document.getElementById('pointerDiv'),
 	homeButton: document.getElementById('homeButton'),
 	modal: document.getElementById('modal'),
-	toggleDarkModeButton: document.getElementById('dark-mode-toggle'),
+	//toggleDarkModeButton: document.getElementById('dark-mode-toggle'),
 
 	menuA: document.getElementById('menuA'),
 	titleA: document.getElementById('menuA').getElementsByClassName('title')[0],
@@ -128,40 +128,37 @@ const eHTML = {
 }
 //#endregion
 
+class CursorManager {
+	static switchPointerDivColor() {
+		eHTML.pointerDiv.classList.toggle('color2');
+	}
+	static setPointerDivHoveringAttribute(value = true) {
+		if (value === true) eHTML.pointerDiv.classList.add('hovering');
+		else eHTML.pointerDiv.classList.remove('hovering');
+	}
+	static setPointerDivRectangleAttribute(value = true) {
+		if (value === true) eHTML.pointerDiv.classList.add('rectangle');
+		else eHTML.pointerDiv.classList.remove('rectangle');
+	}
+	static pointerClicked() {
+		animations.pointerClicked = anime({
+			targets: eHTML.pointerDiv,
+			boxShadow: [
+				'0 0 0 0px black, 0 0 2px 2px white, inset 0 0 0 0px black',
+				'0 0 0px 8px black, 0 0 6px 8px white, inset 0 0 1px 1px black',
+				'0 0 0px 12px black, 0 0 0px 10px white, inset 0 0 2px 2px black',
+				'0 0 0 0px black, 0 0 0px 2px white, inset 0 0 0 0px black',
+				'0 0 0 0px black, 0 0 0px 0px white, inset 0 0 0 0px black',
+			],
+			easing: 'easeOutExpo',
+			duration: 300,
+		});
+	}
+}
+
 //#region - SIMPLE FUNCTIONS
 function rnd(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
-}
-function switchPointerDivColor() {
-	eHTML.pointerDiv.classList.toggle('color2');
-}
-function setPointerDivHoveringAttribute(value = true) {
-	if (value === true) {
-		eHTML.pointerDiv.classList.add('hovering');
-	} else {
-		eHTML.pointerDiv.classList.remove('hovering');
-	}
-}
-function setPointerDivRectangleAttribute(value = true) {
-	if (value === true) {
-		eHTML.pointerDiv.classList.add('rectangle');
-	} else {
-		eHTML.pointerDiv.classList.remove('rectangle');
-	}
-}
-function pointerClicked() {
-	animations.pointerClicked = anime({
-		targets: eHTML.pointerDiv,
-		boxShadow: [
-			'0 0 0 0px black, 0 0 2px 2px white, inset 0 0 0 0px black',
-			'0 0 0px 8px black, 0 0 6px 8px white, inset 0 0 1px 1px black',
-			'0 0 0px 12px black, 0 0 0px 10px white, inset 0 0 2px 2px black',
-			'0 0 0 0px black, 0 0 0px 2px white, inset 0 0 0 0px black',
-			'0 0 0 0px black, 0 0 0px 0px white, inset 0 0 0 0px black',
-		],
-		easing: 'easeOutExpo',
-		duration: 300,
-	});
 }
 //#endregion
 
@@ -424,16 +421,12 @@ function fillContent(target = "A", key = "Decentralization maximalism") {
 	if (target === "A") {
 		eHTML.subtitleA.innerHTML = menuContentValues.A[key].subtitle;
 		eHTML.descriptionA.innerHTML = menuContentValues.A[key].description;
-		if (menuContentValues.A[key].secret) {
-			eHTML.secretA.innerHTML = menuContentValues.A[key].secret;
-		}
+		if (menuContentValues.A[key].secret) eHTML.secretA.innerHTML = menuContentValues.A[key].secret;
 		eHTML.contentA.classList.add('visible');
 	} else if (target === "B") {
 		eHTML.subtitleB.innerHTML = menuContentValues.B[key].subtitle;
 		eHTML.descriptionB.innerHTML = menuContentValues.B[key].description;
-		if (menuContentValues.B[key].secret) {
-			eHTML.secretB.innerHTML = menuContentValues.B[key].secret;
-		}
+		if (menuContentValues.B[key].secret) eHTML.secretB.innerHTML = menuContentValues.B[key].secret;
 		eHTML.contentB.classList.add('visible');
 	}
 }
@@ -457,17 +450,13 @@ document.addEventListener('mousemove', (event) => {
 	eHTML.pointerDiv.style.left = `${event.clientX}px`;
 	eHTML.pointerDiv.style.top = `${event.clientY}px`;
 });
-document.getElementById("dark-mode-toggle").addEventListener('change', (event) => {
+/*document.getElementById("dark-mode-toggle").addEventListener('change', (event) => {
 	toggleDarkMode(eHTML.toggleDarkModeButton)
 	// save dark-mode state
 	localStorage.setItem('dark-mode', event.target.checked);
-});
-let clickTimeout;
+});*/
 document.addEventListener('click', async (event) => {
-	/*if (clickTimeout) { clearTimeout(clickTimeout); }
-	eHTML.pointerDiv.classList.add('clicked');
-	clickTimeout = setTimeout(() => { eHTML.pointerDiv.classList.remove('clicked'); }, 200);*/
-	pointerClicked();
+	CursorManager.pointerClicked();
 
 	switch (event.target) {
 		case eHTML.mainBack.leftObject:
@@ -485,30 +474,25 @@ document.addEventListener('click', async (event) => {
 			break;
 	}
 
-	if (event.target.dataset.key && menuContentValues.A[event.target.dataset.key]) {
+	if (event.target.dataset.key && menuContentValues.A[event.target.dataset.key])
 		fillContent("A", event.target.dataset.key);
-	}
-	if (event.target.dataset.key && menuContentValues.B[event.target.dataset.key]) {
+	
+	if (event.target.dataset.key && menuContentValues.B[event.target.dataset.key])
 		fillContent("B", event.target.dataset.key);
-	}
 });
 document.addEventListener('wheel', (event) => {
-	if (event.deltaY < 0) {
-		setPointerDivRectangleAttribute(true);
-	} else if (event.deltaY > 0) {
-        setPointerDivRectangleAttribute(false);
-    }
+	if (event.deltaY < 0) CursorManager.setPointerDivRectangleAttribute(true);
+	else if (event.deltaY > 0) CursorManager.setPointerDivRectangleAttribute(false);
+
     // Prevent the default scroll
     event.preventDefault();
 }, { passive: false }); // Add passive: false to the addEventListener method
 document.addEventListener('mouseover', (event) => {
 	const targetClass = event.target.classList;
 
-	if (targetClass.contains('menuItem')) {
-		// change first span from '• ' to '> '
-		const firstSpan = event.target.children[0];
-		firstSpan.innerText = '> ';
-	}
+	// change first span from '• ' to '> '
+	if (targetClass.contains('menuItem'))
+		event.target.children[0].innerText = '> ';
 
 	const classTriggeringHovering = [
 		['mainBackObject', 'active'],
@@ -517,31 +501,32 @@ document.addEventListener('mouseover', (event) => {
 	];
 	for (const arrayOfClasses of classTriggeringHovering) {
 		let trigger = true;
-		for (const className of arrayOfClasses) {
-			if (!targetClass.contains(className)) { trigger = false; }
-		}
+		for (const className of arrayOfClasses)
+			if (!targetClass.contains(className))
+				trigger = false;
+
 		if (!trigger) { continue; }
-		setPointerDivHoveringAttribute(true);
+
+		CursorManager.setPointerDivHoveringAttribute(true);
 		return;
 	}
-	setPointerDivHoveringAttribute(false);
+
+	CursorManager.setPointerDivHoveringAttribute(false);
 });
 document.addEventListener('mouseout', (event) => {
 	const targetClass = event.target.classList;
 
-	if (targetClass.contains('menuItem')) {
-		// change first span from '> ' to '• '
-		const firstSpan = event.target.children[0];
-		firstSpan.innerText = '• ';
-	}
+	// change first span from '> ' to '• '
+	if (targetClass.contains('menuItem'))
+		event.target.children[0].innerText = '• ';
 });
 //#endregion
 
 //#region - SET SETTINGS FROM LOCALSTORAGE
-if (localStorage.getItem('dark-mode') === "false") {
+/*if (localStorage.getItem('dark-mode') === "false") {
 	eHTML.toggleDarkModeButton.checked = false;
 	toggleDarkMode(eHTML.toggleDarkModeButton);
-}
+}*/
 //#endregion ----------------------------------------------
 
 });
