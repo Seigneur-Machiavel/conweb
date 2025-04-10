@@ -10,6 +10,7 @@ The one who moves the mouse discovers additional content
 The one who wants to dig into the code to skip level 2 will come across other hidden content */
 
 const urlprefix = ""
+const protocol = window.location.protocol;
 // Dont forget to use the "urlprefix" while fetching, example :
 // .src = `${urlprefix}/sprites/cloud`
 /*const env_= 'dev'; // 'prod' or 'dev'
@@ -163,7 +164,7 @@ function rnd(min, max) {
 function cyberConAppear(duration = 1000) {
 	GLOBAL.cyberconActive = true;
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
-	eHTML.mainBack.cyberconFrame.src = 'https://pinkparrot.science:27280';
+	eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:27280`;
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
 	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'auto';
 	animations.cyberConAppear = anime({
