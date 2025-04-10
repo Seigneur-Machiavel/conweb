@@ -170,7 +170,10 @@ function cyberConAppear(duration = 1000) {
 	GLOBAL.cyberconActive = true;
 	eHTML.mainBack.rightTitle.classList.remove('visible');
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
-	eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:${protocol === 'https:' ? 27281 : 27280}`;
+	//eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:${protocol === 'https:' ? 27281 : 27280}`;
+	if (protocol === 'https:') eHTML.mainBack.cyberconFrame.src = `https://cybercon.app`;
+	else eHTML.mainBack.cyberconFrame.src = `http://pinkparrot.science:27280`;
+
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
 	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'auto';
 	animations.cyberConAppear = anime({
@@ -505,7 +508,11 @@ window.addEventListener('message', function(e) {
 	//console.log('Message received from iframe:', e);
 
 	if (e.data?.type === 'copy_text') {
-		const authorizedCopyTextOrigins = ['https://pinkparrot.science:27281', 'http://pinkparrot.science:27280'];
+		const authorizedCopyTextOrigins = [
+			'https://pinkparrot.science:27281',
+			'http://pinkparrot.science:27280',
+			'https://cybercon.app',
+		];
 		if (!authorizedCopyTextOrigins.includes(formatedUrl(e.origin))) {
 			console.error('Unauthorized origin for copy_text:', e.origin);
 			return;
