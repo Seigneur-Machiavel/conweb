@@ -492,6 +492,16 @@ async function hideContent() {
 //#endregion
 
 //#region - EVENT LISTENERS
+window.addEventListener('message', function(e) {
+	// window.parent.postMessage({ type: 'copy_text', value: referralLink }, 'file://');
+	if (e.data?.type === 'copy_text') {
+		navigator.clipboard.writeText(e.data.value).then(() => {
+			console.log('Text copied to clipboard:', e.data.value);
+		}).catch(err => {
+			console.error('Failed to copy text to clipboard:', err);
+		});
+	}
+});
 document.addEventListener('mousemove', (event) => {
 	console.log(event.target.id);
 	if (event.target.id === eHTML.mainBack.cyberconFrame.id) eHTML.pointerDiv.classList.add('hoverCybercon');
