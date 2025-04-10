@@ -51,7 +51,7 @@ const menuContentValues = {
 			description: "We strive for maximalism in decentralization, ensuring that power and control are distributed as widely as possible across the network.<br><br>This principle guides every decision we make, from the architecture of our blockchain to the governance models we adopt.<br><br>By prioritizing decentralization above all, we aim to create a truly resilient and democratic digital ecosystem that stands in contrast to centralized systems, ensuring that our platform remains open, transparent, and accessible to everyone, everywhere.",
 			secret: "If you're reading this, you're a seeker. Congratulations!<br>You've discovered a hidden message.<br>Keep exploring to find more."
 		},
-		"GPU + ASIC ° Resitance °": {
+		"GPU + ASIC --- Resitant": {
 			subtitle: "Fair & organic distribution <br> 50% POS <br> 50% POW",
 			description: "By repurposing the original use of the Argon2 algorithm, involving specific settings, we ensure an equitable distribution over 10 years, not giving professional actors time to react.",
 			secret: "2008 > Bitcoin > Gamestop > Contrast"
@@ -63,7 +63,7 @@ const menuContentValues = {
 		},
 		"Download": {
 			subtitle: "Join us by running your own node!",
-			description: 'An all-in-one app, easy to install, already including:<br>- The full node (P2P)<br>- Validation (POS)<br>- Mining (POW)<br>- The explorer<br>- The Cybercon game<br>- and many more to come... <br> <a href="https://github.com/Seigneur-Machiavel/contrast/releases/download/0.3.0/Contrast-Setup-0.3.0.exe" id="download-button">Download app now!</a>',
+			description: 'An all-in-one app, easy to install, already including:<br>- The full node (P2P)<br>- Validation (POS)<br>- Mining (POW)<br>- The explorer<br>- The Cybercon game<br>- and many more to come... <br> <a href="https://github.com/Seigneur-Machiavel/contrast/releases/download/0.3.0/Contrast-Setup-0.3.0.exe" id="download-button">Download for Windows</a>',
 			secret: "Regardless of your side, any war need an army.<br>We are the army of the decentralized world.<br>Join us by running a node, join the people victory!"
 		}
 	},
@@ -177,7 +177,7 @@ function cyberConAppear(duration = 1000) {
 	eHTML.mainBack.rightTitle.classList.remove('visible');
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
 	//eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:${protocol === 'https:' ? 27281 : 27280}`;
-	if (protocol === 'https:') eHTML.mainBack.cyberconFrame.src = `https://cybercon.apps${cyberconRefSuffix}`;
+	if (protocol === 'https:') eHTML.mainBack.cyberconFrame.src = `https://cybercon.app${cyberconRefSuffix}`;
 	else eHTML.mainBack.cyberconFrame.src = `http://pinkparrot.science:27280${cyberconRefSuffix}`;
 
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
