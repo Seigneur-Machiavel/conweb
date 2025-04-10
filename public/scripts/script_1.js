@@ -163,7 +163,7 @@ function rnd(min, max) {
 function cyberConAppear(duration = 1000) {
 	GLOBAL.cyberconActive = true;
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
-	eHTML.mainBack.cyberconFrame.src = 'http://pinkparrot.science:27280';
+	eHTML.mainBack.cyberconFrame.src = 'https://pinkparrot.science:27280';
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
 	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'auto';
 	animations.cyberConAppear = anime({
