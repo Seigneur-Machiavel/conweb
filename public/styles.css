@@ -257,6 +257,7 @@ body {
     color: var(--color1);
 }
 #download-button {
+    pointer-events: initial;
     margin-top: 50px;
     font-size: xx-large;
     color: var(--color2);
