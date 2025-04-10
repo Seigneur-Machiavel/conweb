@@ -495,8 +495,7 @@ async function hideContent() {
 //#region - EVENT LISTENERS
 window.addEventListener('message', function(e) {
 	// window.parent.postMessage({ type: 'copy_text', value: referralLink }, 'file://');
-	console.log('Message received from iframe:', e.data);
-	console.log(e.data);
+	console.log('Message received from iframe:', e);
 	if (e.data?.type === 'copy_text') {
 		navigator.clipboard.writeText(e.data.value).then(() => {
 			console.log('Text copied to clipboard:', e.data.value);
@@ -506,7 +505,7 @@ window.addEventListener('message', function(e) {
 	}
 });
 document.addEventListener('mousemove', (event) => {
-	console.log(event.target.id);
+	//console.log(event.target.id);
 	if (event.target.id === eHTML.mainBack.cyberconFrame.id) eHTML.pointerDiv.classList.add('hoverCybercon');
 	else eHTML.pointerDiv.classList.remove('hoverCybercon');
 
