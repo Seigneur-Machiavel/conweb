@@ -256,6 +256,15 @@ body {
 #contentA .secret {
     color: var(--color1);
 }
+#download-button {
+    margin-top: 50px;
+    font-size: xx-large;
+    color: var(--color2);
+    display: block;
+    width: 100%;
+    text-align: right;
+    font-family: fantasy;
+}
 #contentB {
     color: var(--color1);
     left: 0;

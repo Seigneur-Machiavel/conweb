@@ -40,7 +40,7 @@ const GLOBAL = {
 }
 const menuContentValues = {
 	A: { // VISON
-		"Decentralization maximalism": {
+		/*"Decentralization maximalism": {
 			subtitle: "Decentralization isn't a feature...<br>it's our core philosophy.",
 			description: "We strive for maximalism in decentralization, ensuring that power and control are distributed as widely as possible across the network.<br><br>This principle guides every decision we make, from the architecture of our blockchain to the governance models we adopt.<br><br>By prioritizing decentralization above all, we aim to create a truly resilient and democratic digital ecosystem that stands in contrast to centralized systems, ensuring that our platform remains open, transparent, and accessible to everyone, everywhere.",
 			secret: "If you're reading this, you're a seeker. Congratulations!<br>You've discovered a hidden message.<br>Keep exploring to find more."
@@ -59,7 +59,27 @@ const menuContentValues = {
 			subtitle: "Roadmap",
 			description: "Place holder",
 			secret: "Regardless of your side, any war need an army. We are the army of the decentralized world. Join us by running a node now!"
+		},*/
+		"Decentralization maximalism": {
+			subtitle: "Decentralization isn't a feature...<br>it's our core philosophy.",
+			description: "We strive for maximalism in decentralization, ensuring that power and control are distributed as widely as possible across the network.<br><br>This principle guides every decision we make, from the architecture of our blockchain to the governance models we adopt.<br><br>By prioritizing decentralization above all, we aim to create a truly resilient and democratic digital ecosystem that stands in contrast to centralized systems, ensuring that our platform remains open, transparent, and accessible to everyone, everywhere.",
+			secret: "If you're reading this, you're a seeker. Congratulations!<br>You've discovered a hidden message.<br>Keep exploring to find more."
 		},
+		"GPU + ASIC ° Resitance °": {
+			subtitle: "Fair & organic distribution <br> 50% POS <br> 50% POW",
+			description: "By repurposing the original use of the Argon2 algorithm, involving specific settings, we ensure an equitable distribution over 10 years, not giving professional actors time to react.",
+			secret: "2008 > Bitcoin > Gamestop > Contrast"
+		},
+		"Fully open source": {
+			subtitle: "Entire Contrast codebase is open source",
+			description: "Embracing the spirit of true collaboration and innovation, CONTRAST is proud to be fully open source. This commitment allows us to tap into the collective genius of developers, innovators, and enthusiasts worldwide.<br><br>By making our code publicly available, we invite the community to contribute, audit, and enhance our platform, ensuring not only the security and robustness of our technology but also fostering an environment of transparency and trust.<br><br>Open source is the backbone of our approach to creating a blockchain solution that is continually evolving and improving through community-driven development.",
+			secret: "None of the industrial companies should aquire the majority, we need your help to keep the network our!<br>- Early adaptors will be rewarded and aquire the majority of the network."
+		},
+		"Download": {
+			subtitle: "Join us by running your own node!",
+			description: 'An all-in-one app, easy to install, already including:<br>- The full node (P2P)<br>- Validation (POS)<br>- Mining (POW)<br>- The explorer<br>- The Cybercon game<br>- and many more to come... <br> <a href="https://github.com/Seigneur-Machiavel/contrast/releases/download/0.3.0/Contrast-Setup-0.3.0.exe" id="download-button">Download app now!</a>',
+			secret: "Regardless of your side, any war need an army.<br>We are the army of the decentralized world.<br>Join us by running a node, join the people victory!"
+		}
 	},
 	B: { // BLOCKCHAIN
 		"Subtantial blockchain innovation": {
@@ -509,7 +529,6 @@ window.addEventListener('message', function(e) {
 
 	if (e.data?.type === 'copy_text') {
 		const authorizedCopyTextOrigins = [
-			'https://pinkparrot.science:27281',
 			'http://pinkparrot.science:27280',
 			'https://cybercon.app',
 		];
