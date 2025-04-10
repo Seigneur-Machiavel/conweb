@@ -474,6 +474,7 @@ body.dark-mode #homeButton.invert {
     left: 50%;
     translate: -50% -50%;
     color: var(--color2);
+    opacity: 1;
 }
 #mainBackRightTitle.fadeOut {
     opacity: 0;
