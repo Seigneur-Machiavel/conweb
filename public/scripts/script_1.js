@@ -503,7 +503,7 @@ window.addEventListener('message', function(e) {
 	//console.log('Message received from iframe:', e);
 
 	if (e.data?.type === 'copy_text') {
-		const authorizedCopyTextOrigins = ['https://pinkparrot.science:27280', 'http://pinkparrot.science:27280'];
+		const authorizedCopyTextOrigins = ['https://pinkparrot.science:27281', 'http://pinkparrot.science:27280'];
 		if (!authorizedCopyTextOrigins.includes(formatedUrl(e.origin))) {
 			console.error('Unauthorized origin for copy_text:', e.origin);
 			return;
