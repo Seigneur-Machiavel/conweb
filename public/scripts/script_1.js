@@ -494,6 +494,8 @@ async function hideContent() {
 //#region - EVENT LISTENERS
 window.addEventListener('message', function(e) {
 	// window.parent.postMessage({ type: 'copy_text', value: referralLink }, 'file://');
+	console.log('Message received from iframe:', e.data);
+	console.log(e.data);
 	if (e.data?.type === 'copy_text') {
 		navigator.clipboard.writeText(e.data.value).then(() => {
 			console.log('Text copied to clipboard:', e.data.value);
