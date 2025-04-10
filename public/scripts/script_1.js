@@ -32,6 +32,12 @@ function toggleDarkMode(element) {
 //#endregion
 
 //#region - VARIABLES
+const urlParams = new URLSearchParams(window.location.search);
+const refId =  urlParams.get('ref');
+const refIdSafeStr = refId ? refId.replace(/[^0-9]/g, '') : null;
+const cyberconRefSuffix = refIdSafeStr ? `/?ref=${refIdSafeStr}` : '';
+console.log('refIdSafeStr', refIdSafeStr);
+
 const animations = {};
 const GLOBAL = {
 	isOpen: false,
@@ -39,27 +45,7 @@ const GLOBAL = {
 	cyberconActive: false,
 }
 const menuContentValues = {
-	A: { // VISON
-		/*"Decentralization maximalism": {
-			subtitle: "Decentralization isn't a feature...<br>it's our core philosophy.",
-			description: "We strive for maximalism in decentralization, ensuring that power and control are distributed as widely as possible across the network.<br><br>This principle guides every decision we make, from the architecture of our blockchain to the governance models we adopt.<br><br>By prioritizing decentralization above all, we aim to create a truly resilient and democratic digital ecosystem that stands in contrast to centralized systems, ensuring that our platform remains open, transparent, and accessible to everyone, everywhere.",
-			secret: "If you're reading this, you're a seeker. Congratulations!<br>You've discovered a hidden message.<br>Keep exploring to find more."
-		},
-		"Users oriented services": {
-			subtitle: "User-Friendly Tools<br>Inspired by Modern Online Banking",
-			description: "Understanding the importance of accessibility, we have meticulously crafted our user interface to mirror the convenience and user-friendliness of modern online banking.<br><br>Our tools are designed with the end-user in mind, ensuring that navigating the Contrast ecosystem is intuitive, straightforward, and efficient.",
-			secret: "By using ASIC-resistant algorithms and undercover marketing, we ensure that our platform remains accessible to all users, regardless of their hardware or technical expertise."
-		},
-		"Fully open source": {
-			subtitle: "Any Contrast code is open source",
-			description: "Embracing the spirit of true collaboration and innovation, CONTRAST is proud to be fully open source. This commitment allows us to tap into the collective genius of developers, innovators, and enthusiasts worldwide.<br><br>By making our code publicly available, we invite the community to contribute, audit, and enhance our platform, ensuring not only the security and robustness of our technology but also fostering an environment of transparency and trust.<br><br>Open source is the backbone of our approach to creating a blockchain solution that is continually evolving and improving through community-driven development.",
-			secret: "None of the industrial companies should aquire the majority, we need your help to keep the network decentralized!<br>- Early adaptors will be rewarded and aquire the majority of the network."
-		},
-		"Roadmap": {
-			subtitle: "Roadmap",
-			description: "Place holder",
-			secret: "Regardless of your side, any war need an army. We are the army of the decentralized world. Join us by running a node now!"
-		},*/
+	A: { // BLOCKCHAIN
 		"Decentralization maximalism": {
 			subtitle: "Decentralization isn't a feature...<br>it's our core philosophy.",
 			description: "We strive for maximalism in decentralization, ensuring that power and control are distributed as widely as possible across the network.<br><br>This principle guides every decision we make, from the architecture of our blockchain to the governance models we adopt.<br><br>By prioritizing decentralization above all, we aim to create a truly resilient and democratic digital ecosystem that stands in contrast to centralized systems, ensuring that our platform remains open, transparent, and accessible to everyone, everywhere.",
@@ -81,7 +67,7 @@ const menuContentValues = {
 			secret: "Regardless of your side, any war need an army.<br>We are the army of the decentralized world.<br>Join us by running a node, join the people victory!"
 		}
 	},
-	B: { // BLOCKCHAIN
+	B: { // CYBERCON (HIDDEN)
 		"Subtantial blockchain innovation": {
 			subtitle: "~~> Blockchain Innovation ~~",
 			description: "--- Validator node, can run on a raspberry pi.<br>--- Explorer/wallet powered by P2P nodes.<br>--- Argon2 algorithm. (ASIC-resistant)<br>--- 20 chars POW related addresses.<br>--- Readable transaction's ID.<br>--- 2 minute block time.<br>--- 11 transactions/s.",
@@ -191,8 +177,8 @@ function cyberConAppear(duration = 1000) {
 	eHTML.mainBack.rightTitle.classList.remove('visible');
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
 	//eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:${protocol === 'https:' ? 27281 : 27280}`;
-	if (protocol === 'https:') eHTML.mainBack.cyberconFrame.src = `https://cybercon.app`;
-	else eHTML.mainBack.cyberconFrame.src = `http://pinkparrot.science:27280`;
+	if (protocol === 'https:') eHTML.mainBack.cyberconFrame.src = `https://cybercon.apps${cyberconRefSuffix}`;
+	else eHTML.mainBack.cyberconFrame.src = `http://pinkparrot.science:27280${cyberconRefSuffix}`;
 
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
 	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'auto';
