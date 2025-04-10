@@ -13,7 +13,7 @@ const urlprefix = ""
 const protocol = window.location.protocol;
 // Dont forget to use the "urlprefix" while fetching, example :
 // .src = `${urlprefix}/sprites/cloud`
-/*const env_= 'dev'; // 'prod' or 'dev'
+/*const env_= 'dev'; // 'prod' or 'dev',
 if (env_ == 'dev') { // THIS IS FOR DEV ONLY ( to get better code completion)
     console.log('dev mode');
     // const sf = require('./simple_functions.js');
@@ -160,6 +160,11 @@ class CursorManager {
 //#region - SIMPLE FUNCTIONS
 function rnd(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function formatedUrl(urlStr = 'http://localhost:27271/') {
+	// result : http://localhost:27271
+	const url = new URL(urlStr);
+	return `${url.protocol}//${url.hostname}${url.port ? ':' + url.port : ''}`;
 }
 function cyberConAppear(duration = 1000) {
 	GLOBAL.cyberconActive = true;
@@ -495,10 +500,18 @@ async function hideContent() {
 //#region - EVENT LISTENERS
 window.addEventListener('message', function(e) {
 	// window.parent.postMessage({ type: 'copy_text', value: referralLink }, 'file://');
-	console.log('Message received from iframe:', e);
+	//console.log('Message received from iframe:', e);
+
 	if (e.data?.type === 'copy_text') {
+		const authorizedCopyTextOrigins = ['https://pinkparrot.science:27280', 'http://pinkparrot.science:27280'];
+		if (!authorizedCopyTextOrigins.includes(formatedUrl(e.origin))) {
+			console.error('Unauthorized origin for copy_text:', e.origin);
+			return;
+		}
+
 		navigator.clipboard.writeText(e.data.value).then(() => {
-			console.log('Text copied to clipboard:', e.data.value);
+			//console.log('Text copied to clipboard:', e.data.value);
+			console.log('Text copied to clipboard!');
 		}).catch(err => {
 			console.error('Failed to copy text to clipboard:', err);
 		});
