@@ -475,6 +475,10 @@ body.dark-mode #homeButton.invert {
     translate: -50% -50%;
     color: var(--color2);
 }
+#mainBackRightTitle.fadeOut {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
 
 /* DARK MODE SWITCH */
 .switch {
