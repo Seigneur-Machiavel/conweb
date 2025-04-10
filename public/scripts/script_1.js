@@ -169,7 +169,7 @@ function formatedUrl(urlStr = 'http://localhost:27271/') {
 function cyberConAppear(duration = 1000) {
 	GLOBAL.cyberconActive = true;
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
-	eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:27280`;
+	eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:${protocol === 'https:' ? 27281 : 27280}`;
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
 	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'auto';
 	animations.cyberConAppear = anime({
