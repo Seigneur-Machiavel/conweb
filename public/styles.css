@@ -465,7 +465,7 @@ body.dark-mode #homeButton.invert {
 }
 #msgGamestop.visible {
     opacity: 1;
-    animation: msgGamestopAppear 0.2s ease-in-out forwards;
+    animation: msgGamestopAppear .2s 1s ease-in-out forwards;
 }
 #mainBackRightObject div {
     border-radius: 50% 50% 50% 50%;
