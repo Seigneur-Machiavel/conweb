@@ -168,7 +168,7 @@ function formatedUrl(urlStr = 'http://localhost:27271/') {
 }
 function cyberConAppear(duration = 1000) {
 	GLOBAL.cyberconActive = true;
-	eHTML.mainBack.rightTitle.classList.add('fadeOut');
+	eHTML.mainBack.rightTitle.classList.remove('visible');
 	eHTML.mainBack.cyberconFrame.style.opacity = 0;
 	eHTML.mainBack.cyberconFrame.src = `${protocol}//pinkparrot.science:${protocol === 'https:' ? 27281 : 27280}`;
 	eHTML.mainBack.cyberconFrame.style.display = 'block';
@@ -183,7 +183,7 @@ function cyberConAppear(duration = 1000) {
 }
 function cyberConDisappear(duration = 1000) {
 	GLOBAL.cyberconActive = false;
-	eHTML.mainBack.rightTitle.classList.remove('fadeOut');
+	eHTML.mainBack.rightTitle.classList.add('visible');
 	eHTML.msgGamestop.classList.remove('visible');
 	eHTML.mainBack.cyberconFrame.src = 'about:blank';
 	eHTML.mainBack.cyberconFrame.style.pointerEvents = 'none';
