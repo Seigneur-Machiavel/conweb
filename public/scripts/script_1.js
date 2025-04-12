@@ -51,7 +51,7 @@ const menuContentValues = {
 			description: "We strive for maximalism in decentralization, ensuring that power and control are distributed as widely as possible across the network.<br><br>This principle guides every decision we make, from the architecture of our blockchain to the governance models we adopt.<br><br>By prioritizing decentralization above all, we aim to create a truly resilient and democratic digital ecosystem that stands in contrast to centralized systems, ensuring that our platform remains open, transparent, and accessible to everyone, everywhere.",
 			secret: "If you're reading this, you're a seeker. Congratulations!<br>You've discovered a hidden message.<br>Keep exploring to find more."
 		},
-		"GPU + ASIC --- Resitant": {
+		"GPU + ASIC --- Resistant": {
 			subtitle: "Fair & organic distribution <br> 50% POS <br> 50% POW",
 			description: "By repurposing the original use of the Argon2 algorithm, involving specific settings, we ensure an equitable distribution over 10 years, not giving professional actors time to react.",
 			secret: "2008 > Bitcoin > Gamestop > Contrast"
