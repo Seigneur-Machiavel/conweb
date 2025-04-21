@@ -2,7 +2,6 @@ if (false) { // for completion
 	const anime = require('animejs');
 }
 
-
 /* note:
 - 3 levels of reading, hoverer, seeker, programmer
 The one who doesn't have time goes to the essentials
@@ -564,11 +563,11 @@ document.addEventListener('click', async (event) => {
 			break;
 	}
 
-	if (event.target.dataset.key && menuContentValues.A[event.target.dataset.key])
+	/*if (event.target.dataset.key && menuContentValues.A[event.target.dataset.key])
 		fillContent("A", event.target.dataset.key);
 	
 	if (event.target.dataset.key && menuContentValues.B[event.target.dataset.key])
-		fillContent("B", event.target.dataset.key);
+		fillContent("B", event.target.dataset.key);*/
 });
 document.addEventListener('wheel', (event) => {
 	if (event.deltaY < 0) CursorManager.setPointerDivRectangleAttribute(true);
@@ -583,6 +582,12 @@ document.addEventListener('mouseover', (event) => {
 	// change first span from '• ' to '> '
 	if (targetClass.contains('menuItem'))
 		event.target.children[0].innerText = '> ';
+
+	if (event.target.dataset.key && menuContentValues.A[event.target.dataset.key])
+		fillContent("A", event.target.dataset.key);
+	
+	if (event.target.dataset.key && menuContentValues.B[event.target.dataset.key])
+		fillContent("B", event.target.dataset.key);
 
 	const classTriggeringHovering = [
 		['mainBackObject', 'active'],
