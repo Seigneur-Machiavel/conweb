@@ -105,11 +105,15 @@ function executeServerManagerScript(exec_args = "") {
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use('/bounties', express.static(path.join(__dirname, 'bounty/public')));
+
 //app.use(`/${launch_folder}`, express.static('public')) // Route to listen subdomain (ex: localhost:4321/launch_folder)
 
 // Route to listen root domain (ex: localhost:4321) & replace "launch_folder" by the name of the folder
-app.get('/', (req, res) => { res.render('index', {"launch_folder": launch_folder, "timestamp": Date.now()}); });
-app.get('//', (req, res) => { res.render('index', {"launch_folder": launch_folder, "timestamp": Date.now()}); });
+app.get('/', (req, res) => res.render('index', {"launch_folder": launch_folder, "timestamp": Date.now()}));
+app.get('//', (req, res) => res.render('index', {"launch_folder": launch_folder, "timestamp": Date.now()}));
+app.get('/bounties', (req, res) => res.sendFile(path.join(__dirname, './bounty/public/index_bounty.html')));
+app.get('//bounties', (req, res) => res.sendFile(path.join(__dirname, './bounty/public/index_bounty.html')));
 
 // Route to restart the server
 if (!is_debug && !settings.da) { // If not debugging && admin token usage is not disabled
