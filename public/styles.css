@@ -256,7 +256,7 @@ body {
 #contentA .secret {
     color: var(--color1);
 }
-#download-button {
+#download-button, #bounties-button {
     pointer-events: initial;
     margin-top: 50px;
     font-size: xx-large;
