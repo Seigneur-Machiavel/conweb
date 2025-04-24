@@ -57,12 +57,12 @@ const menuContentValues = {
 		},
 		"Fully open source": {
 			subtitle: "Entire Contrast codebase is open source",
-			description: "Embracing the spirit of true collaboration and innovation, CONTRAST is proud to be fully open source. This commitment allows us to tap into the collective genius of developers, innovators, and enthusiasts worldwide.<br><br>By making our code publicly available, we invite the community to contribute, audit, and enhance our platform, ensuring not only the security and robustness of our technology but also fostering an environment of transparency and trust.<br><br>Open source is the backbone of our approach to creating a blockchain solution that is continually evolving and improving through community-driven development.",
+			description: "Embracing the spirit of true collaboration and innovation, CONTRAST is proud to be fully open source. This commitment allows us to tap into the collective genius of developers, innovators, and enthusiasts worldwide.<br><br>By making our code publicly available, we invite the community to contribute, audit, and enhance our platform, ensuring not only the security and robustness of our technology but also fostering an environment of transparency and trust.",
 			secret: "None of the industrial companies should aquire the majority, we need your help to keep the network our!<br>- Early adaptors will be rewarded and aquire the majority of the network."
 		},
 		"Download": {
 			subtitle: "Join us by running your own node!",
-			description: 'An all-in-one app, easy to install, already including:<br>- The full node (P2P)<br>- Validation (POS)<br>- Mining (POW)<br>- The explorer<br>- The Cybercon game<br>- and many more to come... <br> <a href="https://github.com/Seigneur-Machiavel/contrast/releases/download/0.3.0/Contrast-Setup-0.3.0.exe" id="download-button">Download for Windows</a>',
+			description: 'All-in-one app, easy to install, already including:<br>- The full node (P2P)<br>- Validation (POS)<br>- Mining (POW)<br>- Explorer<br>- Cybercon game<br>- and many more to come... <br> <a href="https://github.com/Seigneur-Machiavel/contrast/releases/download/0.3.0/Contrast-Setup-0.3.0.exe" id="download-button">Download for Windows</a>',
 			secret: "Regardless of your side, any war need an army.<br>We are the army of the decentralized world.<br>Join us by running a node, join the people victory!"
 		},
 		"Bounties program": {
