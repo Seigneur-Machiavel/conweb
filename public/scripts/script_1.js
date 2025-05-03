@@ -65,11 +65,11 @@ const menuContentValues = {
 			description: 'All-in-one app, easy to install, already including:<br>- The full node (P2P)<br>- Validation (POS)<br>- Mining (POW)<br>- Explorer<br>- Cybercon game<br>- and many more to come... <br> <a href="https://github.com/Seigneur-Machiavel/contrast/releases/download/0.5.1/Contrast-Setup-0.5.1.exe" id="download-button">Download for Windows</a>',
 			secret: "Regardless of your side, any war need an army.<br>We are the army of the decentralized world.<br>Join us by running a node, join the people victory!"
 		},
-		"Bounties program": {
+		/*"Bounties program": {
 			subtitle: "~~> Bounties program ~~",
 			description: 'Designed to reward individuals who contribute to the growth and development of our ecosystem.<br><br>By participating in our bounties program, you can earn rewards for various tasks, including bug reporting, feature development, community engagement, and more.<br><a href="/bounties" id="bounties-button">Hacking bounties</a>',
 			secret: ""
-		}
+		}*/
 	},
 	B: { // CYBERCON (HIDDEN)
 		"Subtantial blockchain innovation": {
